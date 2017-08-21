@@ -1,6 +1,6 @@
 <template>
   <div class="pos">
-    <!--Hello Pos Demo!-->
+    Hello Pos Demo!
   </div>
 </template>
 

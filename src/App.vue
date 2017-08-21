@@ -8,7 +8,7 @@
     <!--左侧导航-->
     <left-nav></left-nav>
 
-    <div>
+    <div class="main">
       <router-view></router-view>
     </div>
   </div>
@@ -33,6 +33,13 @@
     text-align: center;
     color: #2c3e50;
     color: #980988;
-    margin-top: 60px;
+  }
+
+  .main {
+    float: left;
+    width: 95%;
+    background-color: #EFF2F7;
+    height: 100%;
+    overflow: hidden;
   }
 </style>
