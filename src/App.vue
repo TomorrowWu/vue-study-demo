@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!--<img src="./assets/logo.png">-->
+    <i class="icon iconfont icon-dianpu"></i>
+    <i class="icon iconfont icon-gongnengjianyi"></i>
+    <i class="icon iconfont icon-shouji"></i>
     <router-view></router-view>
   </div>
 </template>
