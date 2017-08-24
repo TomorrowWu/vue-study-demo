@@ -237,7 +237,6 @@
     padding: 10px;
     margin: 10px;
     background-color: #fff;
-
   }
 
   .o-price {
