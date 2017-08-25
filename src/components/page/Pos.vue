@@ -14,10 +14,18 @@
               <el-table-column label="操作" width="100" fixed="right">
                 <template scope="scope">
                   <el-button type="text" size="small">删除</el-button>
-                  <el-button type="text" size="small">增加</el-button>
+                  <!--scope:作用域,可以取到这一行的数据-->
+                  <el-button type="text" size="small" @click="addOrderList(scope.row)">增加</el-button>
                 </template>
               </el-table-column>
             </el-table>
+
+            <div class="totalDiv">
+              <small>数量:</small>
+              {{totalCount}}  &nbsp;&nbsp;&nbsp;&nbsp;
+              <small>金额:</small>
+              {{totalMoney}}元
+            </div>
 
             <div class="div-btn">
               <el-button type="warning">挂单</el-button>
@@ -114,7 +122,9 @@
         type0Goods: [],
         type1Goods: [],
         type2Goods: [],
-        type3Goods: []
+        type3Goods: [],
+        totalMoney: 0,
+        totalCount: 0
       }
     },
     created: function () {
@@ -148,6 +158,8 @@
     },
     methods: {
       addOrderList (goods) {
+        this.totalMoney = 0
+        this.totalCount = 0
 //        商品是否已存在订单列表中
         let isHave = false
         for (let i = 0; i < this.tableData.length; i++) {
@@ -164,6 +176,12 @@
           let newGoods = {goodsId: goods.goodsId, goodsName: goods.goodsName, price: goods.price, count: 1}
           this.tableData.push(newGoods)
         }
+
+//        计算汇总金额和数量
+        this.tableData.forEach((element) => {
+          this.totalCount += element.count
+          this.totalMoney += element.price * element.count
+        })
       }
     }
   }
@@ -218,6 +236,7 @@
     padding: 2px;
     float: left;
     margin: 2px;
+    cursor: pointer;
   }
 
   .cookList li span {
@@ -239,5 +258,11 @@
     font-size: 16px;
     padding-left: 10px;
     padding-top: 10px;
+  }
+
+  .totalDiv {
+    background-color: #fff;
+    padding: 10px;
+    border-bottom: 1px solid #d3dce6;
   }
 </style>
