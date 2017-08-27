@@ -30,7 +30,7 @@
             <div class="div-btn">
               <el-button type="warning">挂单</el-button>
               <el-button type="danger" @click="delAllGoods()">删除</el-button>
-              <el-button type="success">结账</el-button>
+              <el-button type="success" @click="checkOut()">结账</el-button>
             </div>
 
           </el-tab-pane>
@@ -190,6 +190,21 @@
         this.tableData = []
         this.totalCount = 0
         this.totalMoney = 0
+      },
+//      模拟结账
+      checkOut () {
+        if (this.totalCount !== 0) {
+//          这里缺少向服务器提交post请求结账
+          this.tableData = []
+          this.totalCount = 0
+          this.totalMoney = 0
+          this.$message({
+            message: '结账成功,感谢你又为店里出了一份力',
+            type: 'success'
+          })
+        } else {
+          this.$message.error('不能空结。老板了解你急切的心情!')
+        }
       },
 //      汇总数量和金额
       getAllMoney () {
