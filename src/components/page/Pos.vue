@@ -13,7 +13,7 @@
               <el-table-column prop="price" label="金额" width="70"></el-table-column>
               <el-table-column label="操作" width="100" fixed="right">
                 <template scope="scope">
-                  <el-button type="text" size="small">删除</el-button>
+                  <el-button type="text" size="small" @click="delSingleGoods(scope.row)">删除</el-button>
                   <!--scope:作用域,可以取到这一行的数据-->
                   <el-button type="text" size="small" @click="addOrderList(scope.row)">增加</el-button>
                 </template>
@@ -157,7 +157,9 @@
       document.getElementById('order-list').style.height = orderHeight = orderHeight + 'px'
     },
     methods: {
+//      添加订单列表方法
       addOrderList (goods) {
+//        汇总金额清零
         this.totalMoney = 0
         this.totalCount = 0
 //        商品是否已存在订单列表中
@@ -176,12 +178,24 @@
           let newGoods = {goodsId: goods.goodsId, goodsName: goods.goodsName, price: goods.price, count: 1}
           this.tableData.push(newGoods)
         }
-
-//        计算汇总金额和数量
-        this.tableData.forEach((element) => {
-          this.totalCount += element.count
-          this.totalMoney += element.price * element.count
-        })
+        this.getAllMoney()
+      },
+//      删除单个商品
+      delSingleGoods (goods) {
+        this.tableData = this.tableData.filter(o => o.goodsId !== goods.goodsId)
+        this.getAllMoney()
+      },
+//      汇总数量和金额
+      getAllMoney () {
+        this.totalCount = 0
+        this.totalMoney = 0
+        if (this.tableData) {
+          //        计算汇总金额和数量
+          this.tableData.forEach((element) => {
+            this.totalCount += element.count
+            this.totalMoney += element.price * element.count
+          })
+        }
       }
     }
   }
