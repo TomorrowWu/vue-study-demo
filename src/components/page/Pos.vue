@@ -29,7 +29,7 @@
 
             <div class="div-btn">
               <el-button type="warning">挂单</el-button>
-              <el-button type="danger">删除</el-button>
+              <el-button type="danger" @click="delAllGoods()">删除</el-button>
               <el-button type="success">结账</el-button>
             </div>
 
@@ -184,6 +184,12 @@
       delSingleGoods (goods) {
         this.tableData = this.tableData.filter(o => o.goodsId !== goods.goodsId)
         this.getAllMoney()
+      },
+//      清空购物车
+      delAllGoods () {
+        this.tableData = []
+        this.totalCount = 0
+        this.totalMoney = 0
       },
 //      汇总数量和金额
       getAllMoney () {
