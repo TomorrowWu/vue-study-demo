@@ -26,5 +26,4 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+![vue-外卖收银.jpg](http://upload-images.jianshu.io/upload_images/5815624-8cce8fbe98f0826f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
