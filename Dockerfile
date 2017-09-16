@@ -5,7 +5,7 @@ MAINTAINER Keifer Gu <keifergu@gmail.com>
 # 我们首先使用 ./Dockerfile去编译构建一个生产版本的代码包，然后使用该 Docker 去运行程序
 
 # 复制构建出的代码到容器内
-COPY /dist /usr/share/nginx/html/
+COPY ./dist /usr/share/nginx/html/
 
 EXPOSE 80
 
