@@ -1,14 +1,13 @@
-# 使用 Node 官方提供的镜像
-FROM node:7.4.0
+# 使用 Nginx 来发布运行程序
+FROM nginx:1.9
 MAINTAINER Keifer Gu <keifergu@gmail.com>
 
-RUN mkdir -p /app
-WORKDIR /app
+# 我们首先使用 ./Dockerfile去编译构建一个生产版本的代码包，然后使用该 Docker 去运行程序
 
-COPY package.json /app/
-# 由于使用 npm 官方源下载较慢，故改用淘宝的源
-RUN npm config set registry https://registry.npm.taobao.org
-RUN npm install
-COPY . /app
-# 执行构建命令并将代码构建在 /app/dist 目录
-#RUN npm run build
+# 复制构建出的代码到容器内
+COPY /dist /usr/share/nginx/html/
+
+EXPOSE 80
+
+# 运行 Nginx 服务器
+CMD ["nginx", "-g", "daemon off;"]
